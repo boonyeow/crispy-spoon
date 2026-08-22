@@ -27,7 +27,7 @@ ROOMS_TO_CHECK = {
 
 TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
 TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
-
+VACANCY_THRESHOLD = int(os.environ["VACANCY_THRESHOLD"])
 
 def send_telegram_message(message):
     """Send a message to Telegram."""
@@ -161,7 +161,7 @@ def check_hotel():
     available_rooms = [
         room
         for room in found_rooms.values()
-        if room["vacancy"] > 0
+        if room["vacancy"] >= VACANCY_THRESHOLD
     ]
 
     if not available_rooms:
@@ -188,7 +188,7 @@ def check_hotel():
 
         vacancy = room["vacancy"]
 
-        if vacancy > 0:
+        if vacancy >= VACANCY_THRESHOLD:
             line = (
                 f"🚨 {room['name']}: {vacancy}"
             )
