@@ -11,13 +11,12 @@ API_URL = "https://hoshinoresorts.com/api/rooms"
 
 BOOKING_URL = (
     "https://hoshinoresorts.com/EN/hotels/0000000006/search"
-    "?checkIn=2027%2F02%2F09&stay=2&a=4&b=0&c=0&d=0"
+    "?checkIn=2027%2F02%2F09&stay=2&a=2&b=0&c=1&d=0"
 )
 
 ROOMS_TO_CHECK = {
-    "0000000023": "Standard Quadruple Room",
-    "0000000007": "Family Quadruple Room",
-    "0000000006": "Kids Quadruple Room",
+    "0000000030": "Tomamu The Tower1｜Standard Triple Room",
+    "0000000033": "Tomamu The Tower2｜Family Triple Room（bunk bed）"
 }
 
 
@@ -64,9 +63,9 @@ def check_hotel():
         "hotelId": "0000000006",
         "checkIn": "2027/02/09",
         "stayLength": "2",
-        "adult": "4",
+        "adult": "2",
         "underTwelve": "0",
-        "underSeven": "0",
+        "underSeven": "1",
         "underFour": "0",
         "lang": "EN",
         "_": timestamp,
@@ -180,7 +179,7 @@ def check_hotel():
         "🚨 HOSHINO TOMAMU VACANCY FOUND!",
         "",
         "📅 9 Feb 2027 – 11 Feb 2027",
-        "👨‍👩‍👦 4 adults",
+        "👨‍👩‍👦 2 adults, 1 kid",
         "",
     ]
 
