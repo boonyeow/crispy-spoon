@@ -2,7 +2,7 @@ name: Acuity Earlier Slot Check
 
 on:
   schedule:
-    - cron: "*/45 * * * *"
+    - cron: "0 * * * *"
 
   # Allows you to manually run the check from GitHub
   workflow_dispatch:
