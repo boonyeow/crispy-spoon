@@ -2,8 +2,6 @@ name: Acuity Earlier Slot Check
 
 on:
   schedule:
-    # Run every 15 minutes.
-    # Scheduled runs can be delayed under load; treat as best-effort.
     - cron: "7,22,37,52 * * * *"
 
   # Allows you to manually run the check from GitHub
@@ -30,8 +28,6 @@ jobs:
 
       - name: Check Acuity availability (before existing appointment only)
         env:
-          # Target config from secrets (Settings -> Secrets and variables -> Actions).
-          # CALENDAR_ID / TIMEZONE / cutoff live as constants in check_acuity.py.
           OWNER: ${{ secrets.ACUITY_OWNER }}
           APPOINTMENT_TYPE_ID: ${{ secrets.ACUITY_APPT_TYPE_ID }}
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
