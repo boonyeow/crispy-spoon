@@ -4,7 +4,7 @@ on:
   schedule:
     # Run every 15 minutes.
     # Scheduled runs can be delayed under load; treat as best-effort.
-    - cron: "*/15 * * * *"
+    - cron: "7,22,37,52 * * * *"
 
   # Allows you to manually run the check from GitHub
   workflow_dispatch:
