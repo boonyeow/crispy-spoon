@@ -1,0 +1,40 @@
+name: Acuity Earlier Slot Check
+
+on:
+  schedule:
+    # Run every 15 minutes.
+    # Scheduled runs can be delayed under load; treat as best-effort.
+    - cron: "*/15 * * * *"
+
+  # Allows you to manually run the check from GitHub
+  workflow_dispatch:
+
+jobs:
+  check-acuity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install requests
+
+      - name: Check Acuity availability (before existing appointment only)
+        env:
+          # Target config from secrets (Settings -> Secrets and variables -> Actions).
+          # CALENDAR_ID / TIMEZONE / cutoff live as constants in check_acuity.py.
+          OWNER: ${{ secrets.ACUITY_OWNER }}
+          APPOINTMENT_TYPE_ID: ${{ secrets.ACUITY_APPT_TYPE_ID }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python check_acuity.py
